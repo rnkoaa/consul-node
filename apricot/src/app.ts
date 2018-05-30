@@ -1,4 +1,3 @@
-import { ConfigBootstrap } from "./util/config-bootstrap";
 import express from "express";
 import compression from "compression"; // compresses requests
 // import session from "express-session";
@@ -12,6 +11,7 @@ import path from "path";
 import expressValidator from "express-validator";
 // import bluebird from "bluebird";
 import { ENVIRONMENT } from "./util/environments";
+import { AppConfig } from "./util/app-config";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 // dotenv.config({ path: ".env" });
@@ -20,9 +20,9 @@ import * as homeController from "./controller/home";
 import * as healthController from "./controller/health";
 import * as infoController from "./controller/info";
 
-const configBootstrap = new ConfigBootstrap();
+const appConfig = new AppConfig();
 
-configBootstrap.bootstrap(ENVIRONMENT);
+appConfig.bootstrap(ENVIRONMENT);
 // Create Express server
 const app = express();
 const prod = ENVIRONMENT === "production"; // Anything else is treated as 'dev'
@@ -57,19 +57,18 @@ app.get("/info", infoController.info);
 app.get("/info/env", infoController.env);
 app.get("/health", healthController.getHealth);
 
-
-process.on("SIGHUP", function () {
-    // getUpstreams(true, function(hosts) {
-    //     console.log("Updated upstreamHosts");
-    // });
+process.on("SIGHUP", function() {
+  // getUpstreams(true, function(hosts) {
+  //     console.log("Updated upstreamHosts");
+  // });
 });
 
-process.on("SIGTERM", function onSigterm () {
-    console.info("Got SIGTERM. Graceful shutdown start", new Date().toISOString());
-    // start graceul shutdown here
-    // shutdown();
-    process.exit();
-  });
+process.on("SIGTERM", function onSigterm() {
+  console.info("Got SIGTERM. Graceful shutdown start", new Date().toISOString());
+  // start graceul shutdown here
+  // shutdown();
+  process.exit();
+});
 
 //   function shutdown() {
 //     server.close(function onServerClosed (err) {

@@ -47,6 +47,10 @@ const paths = {
 gulp.task("copy-js", function() {
     return gulp.src("src/public/js/lib/**/*.js").pipe(gulp.dest("dist/public/js/"));
 });
+
+gulp.task("copy-config", function() {
+    return gulp.src("config/*.json").pipe(gulp.dest("dist/config/"));
+});
 gulp.task("copy-env", function() {
     return gulp.src(".env").pipe(gulp.dest("dist/"));
 });
@@ -86,7 +90,7 @@ gulp.task("compile-ts", ["lint-ts"], function() {
 
 gulp.task("default", function(done) {
     // runSequence("clean", ["compile-ts", "copy-assets"]);
-    runSequence("clean", ["compile-ts", "copy-env"]);
+    runSequence("clean", ["compile-ts", "copy-env", "copy-config"]);
     done();
 });
 

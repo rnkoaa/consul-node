@@ -6,13 +6,8 @@ export class Application {
     return new ConsulOperations();
   }
 
-  static consulClient() {
-    const isSecure = process.env.CONSUL_SECURE === "true";
-    const consulOpts = {
-      host: process.env.CONSUL_HOST,
-      port: process.env.CONSUL_PORT,
-      secure: isSecure
-    };
+  static consulClient(consulOpts) {
+    //  const isSecure = process.env.CONSUL_SECURE === "true";
     return new Consul(consulOpts);
   }
 }
