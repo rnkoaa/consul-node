@@ -1,0 +1,12 @@
+{
+    "env": {
+        "compiler": "none",
+        "tester": "none"
+    },
+    "dependencies": {
+        "rnkoaa.consul/cloud/consul-config": "0.0.1",
+        "rnkoaa.consul/cloud/consul-service-discovery": "0.0.1"
+    },
+    "componentsDefaultDirectory": "components/{namespace}/{name}",
+    "packageManager": "npm"
+}

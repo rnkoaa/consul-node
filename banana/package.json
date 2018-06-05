@@ -17,6 +17,7 @@
     "@types/express": "^4.11.1",
     "@types/express-session": "^1.15.8",
     "@types/jest": "^22.1.3",
+    "@types/winston": "^2.3.9",
     "babel-core": "^6.7.7",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.7.5",
@@ -41,10 +42,11 @@
     "ts-jest": "^22.0.4",
     "ts-node": "^6.0.3",
     "tslint": "^5.9.1",
-    "typescript": "^2.8.3",
-    "@types/winston": "^2.3.9"
+    "typescript": "^2.8.3"
   },
   "dependencies": {
+    "@bit/rnkoaa.consul.cloud.consul-config": "file:./src/components/consul-config",
+    "@bit/rnkoaa.consul.cloud.consul-service-discovery": "file:./src/components/consul-service-discovery",
     "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
@@ -55,6 +57,8 @@
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-validator": "^5.1.2",
+    "nconf": "^0.10.0",
+    "node-cache": "^4.2.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "winston": "^2.4.0"
