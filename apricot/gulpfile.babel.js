@@ -11,19 +11,6 @@ import runSequence from "run-sequence";
 import sourcemaps from 'gulp-sourcemaps';
 const tsProject = tsc.createProject("tsconfig.json");
 
-// const Config = import("./gulpfile.config");
-// import *  from "gulp-typescript";
-/*var gulp = require("gulp"),
-    debug = require("gulp-debug"),
-    inject = require("gulp-inject"),
-    runSequence = require("run-sequence"),
-    tsc = require("gulp-typescript"),
-    tslint = require("gulp-tslint"),
-    sourcemaps = require("gulp-sourcemaps"),
-    del = require("del"),
-    Config = require("./gulpfile.config");
-*/
-
 const paths = {
     pages: ["src/*.html"],
     static: [
@@ -34,15 +21,6 @@ const paths = {
         "src/public/images/**/*.jpg"
     ]
 };
-
-// gulp.task("copy-html", function() {
-//     return gulp.src(paths.pages).pipe(gulp.dest("dist"));
-// });
-
-// gulp.task("copy-assets", function(done) {
-//     runSequence("copy-js", ["copy-img", "copy-css", "copy-fonts"]);
-//     done();
-// });
 
 gulp.task("copy-js", function() {
     return gulp.src("src/public/js/lib/**/*.js").pipe(gulp.dest("dist/public/js/"));
@@ -55,20 +33,9 @@ gulp.task("copy-env", function() {
     return gulp.src(".env").pipe(gulp.dest("dist/"));
 });
 
-// gulp.task("copy-img", function() {
-//     return gulp.src("src/public/images/**/*.*").pipe(gulp.dest("dist/public/images/"));
-// });
-// gulp.task("copy-css", function() {
-//     return gulp.src("src/public/css/**/*.css").pipe(gulp.dest("dist/public/css/"));
-// });
-// gulp.task("copy-fonts", function() {
-//     return gulp.src("src/public/fonts/**/*.*").pipe(gulp.dest("dist/public/fonts/"));
-// });
-
 gulp.task("lint-ts", function() {
     return gulp
         .src(["src/**/*.ts", "!src/test/*/**", "!src/components/**/*.js", "!src/components/node_modules/**/*.ts"])
-        // .src(["src/**/*.ts", "!src/test/*/**", "!src/components/**/*.js"])
         .pipe(
             tslint({
                 formatter: "verbose"
@@ -77,7 +44,6 @@ gulp.task("lint-ts", function() {
         .pipe(tslint.report());
 });
 
-// var tsProject = tsc.createProject("tsconfig.json");
 gulp.task("compile-ts", ["lint-ts"], function() {
     return tsProject
         .src()

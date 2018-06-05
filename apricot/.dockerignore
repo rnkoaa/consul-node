@@ -6,3 +6,4 @@ gulpfile.config.js
 Taskfile.yml
 Taskvars.yml
 **/*.log
+package-lock.json

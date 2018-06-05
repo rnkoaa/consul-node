@@ -11,9 +11,9 @@ tasks:
  
   docker-push:
     cmds:
-      - docker build --no-cache -t rnkoaa/banana:0.0.1 .
-      - docker tag rnkoaa/banana:0.0.1 rnkoaa/banana:latest
-      - docker push rnkoaa/banana:0.0.1
+      - docker build --no-cache -t rnkoaa/banana:0.0.2 .
+      - docker tag rnkoaa/banana:0.0.2 rnkoaa/banana:latest
+      - docker push rnkoaa/banana:0.0.2
       - docker push rnkoaa/banana:latest
   
   docker-cleanup:

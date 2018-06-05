@@ -45,8 +45,6 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
-    "@bit/rnkoaa.consul.cloud.consul-config": "file:./src/components/consul-config",
-    "@bit/rnkoaa.consul.cloud.consul-service-discovery": "file:./src/components/consul-service-discovery",
     "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",

@@ -11,9 +11,9 @@ tasks:
  
   docker-push:
     cmds:
-      - docker build --no-cache -t rnkoaa/apricot:0.0.1 .
-      - docker tag rnkoaa/apricot:0.0.1 rnkoaa/apricot:latest
-      - docker push rnkoaa/apricot:0.0.1
+      - docker build --no-cache -t rnkoaa/apricot:0.0.2 .
+      - docker tag rnkoaa/apricot:0.0.2 rnkoaa/apricot:latest
+      - docker push rnkoaa/apricot:0.0.2
       - docker push rnkoaa/apricot:latest
   
   docker-cleanup:

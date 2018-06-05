@@ -12,10 +12,9 @@ RUN rm -rf ${RM_DIRS} /node-${VERSION}* /usr/share/man /tmp/* /var/cache/apk/* \
 
 WORKDIR /var/www/app
 
-RUN npm install -g pm2 \
- && npm install --only=prod \
- && npm prune --production
+RUN npm install --only=prod
 
 COPY dist/ /var/www/app
 
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
+CMD ["echo", "Done."]
