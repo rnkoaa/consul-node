@@ -1,7 +1,7 @@
-import { ConsulOperations } from "./consul-operations";
 import { RandomLoadBalancingStrategy } from "./random-load-balancing-strategy";
 import { RoundRobinLoadBalancingStrategy } from "./round-robin-load-balancing-strategy";
 import { ServiceInstance } from "../domain/service-instance";
+import { ConsulOperations } from "../components/consul-service-discovery/lib";
 
 export class DiscoveryClient {
   private _strategy: string;

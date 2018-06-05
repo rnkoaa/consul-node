@@ -3,3 +3,7 @@ certs/
 **/dist/
 **/.env
 **/*debug.log*
+
+# ignore bit components
+**/*/src/components/
+**/*/.bit

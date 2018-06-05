@@ -3,7 +3,7 @@ import { ENVIRONMENT } from "./environments";
 import fs from "fs";
 import path from "path";
 import config from "config";
-import { ConsulConfigClient } from "./consul-config-client";
+import { ConsulConfigClient } from "../components/consul-config/lib";
 
 export class AppConfig {
   private _consulConfigClient = new ConsulConfigClient();

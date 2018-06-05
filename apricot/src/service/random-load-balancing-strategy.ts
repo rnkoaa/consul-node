@@ -1,8 +1,8 @@
 "use strict";
 
 import { ServiceInstance } from "../domain/service-instance";
-import { ConsulOperations } from "./consul-operations";
 import { HealthService } from "../domain/health-service";
+import { ConsulOperations } from "../components/consul-service-discovery/lib";
 
 export class RandomLoadBalancingStrategy {
   private _serviceInstances: ServiceInstance[];

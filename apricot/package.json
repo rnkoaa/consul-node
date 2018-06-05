@@ -46,6 +46,8 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
+    "@bit/rnkoaa.consul.cloud.consul-config": "file:./src/components/consul-config",
+    "@bit/rnkoaa.consul.cloud.consul-service-discovery": "file:./src/components/consul-service-discovery",
     "async": "^2.6.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
@@ -58,6 +60,8 @@
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-validator": "^5.1.2",
+    "nconf": "0.10.0",
+    "node-cache": "^4.2.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "winston": "^2.4.0"

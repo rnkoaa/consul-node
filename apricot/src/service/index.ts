@@ -1,5 +1,4 @@
 import Consul from "consul";
-import { ConsulOperations } from "./consul-operations";
 import * as fs from "fs";
 import * as path from "path";
 import axios from "axios";
@@ -8,6 +7,7 @@ import { DiscoveryClient } from "./discovery-client";
 import { Url } from "../util/url";
 
 import dotenv from "dotenv";
+import { ConsulOperations } from "../components/consul-service-discovery/lib";
 
 if (fs.existsSync(".env")) {
   dotenv.config({ path: ".env" });

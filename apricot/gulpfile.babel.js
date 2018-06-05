@@ -67,7 +67,8 @@ gulp.task("copy-env", function() {
 
 gulp.task("lint-ts", function() {
     return gulp
-        .src(["src/**/*.ts", "!src/test/*/**}"])
+        .src(["src/**/*.ts", "!src/test/*/**", "!src/components/**/*.js", "!src/components/node_modules/**/*.ts"])
+        // .src(["src/**/*.ts", "!src/test/*/**", "!src/components/**/*.js"])
         .pipe(
             tslint({
                 formatter: "verbose"

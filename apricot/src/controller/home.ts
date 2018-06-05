@@ -1,11 +1,10 @@
 "use strict";
 
 import async from "async";
-// import request from "request";
 import { Response, Request, NextFunction } from "express";
-import { ConsulOperations } from "../service/consul-operations";
 import { RoundRobinLoadBalancingStrategy } from "../service/round-robin-load-balancing-strategy";
 import { RandomLoadBalancingStrategy } from "../service/random-load-balancing-strategy";
+import { ConsulOperations } from "../components/consul-service-discovery/lib";
 
 const consulOperations = new ConsulOperations();
 const roundRobinLoadBalancingStrategy = new RoundRobinLoadBalancingStrategy(consulOperations);
