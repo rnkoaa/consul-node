@@ -8,7 +8,7 @@ import { ConsulConfigClient } from "./consul-config-client";
 export class AppConfig {
   private _consulConfigClient = new ConsulConfigClient();
 
- async bootstrap(ENVIRONMENT) {
+  async bootstrap(ENVIRONMENT) {
     if (this._isBootstrapped()) {
       const consulAppConfig = await this._consulConfigClient.getConfig(ENVIRONMENT);
       const appConfigObj = JSON.parse(consulAppConfig);
@@ -30,23 +30,19 @@ export class AppConfig {
   }
   private _isBootstrapped(): boolean {
     const bootstrapConfigFile = path.join(__dirname, "../config/bootstrap.json");
-    return fs.existsSync(bootstrapConfigFile);
+    if (fs.existsSync(bootstrapConfigFile)) {
+      const bootstrapConfigString = fs.readFileSync(bootstrapConfigFile, "utf-8");
+      const bootstrapConfigObj = JSON.parse(bootstrapConfigString);
+      return (
+        bootstrapConfigObj != undefined &&
+        bootstrapConfigObj.consul != undefined &&
+        bootstrapConfigObj.consul.enabled
+      );
+    }
+    return false;
   }
 
   get(key: string): string {
-    // if (this._isBootstrapped()) {
-    //   // read config from generated bootstrap file.
-    //   const configObj = this._getConfig(this._isBootstrapped());
-    //   if (configObj) {
-    //     return configObj[key];
-    //   } else {
-    //     return undefined;
-    //   }
-    // } else {
-    //   // read config from config file
-    //   const env = ENVIRONMENT ? ENVIRONMENT : "default";
-    //   const configFile = `application-${env}.json`;
-    // }
     return config.get(key);
   }
 

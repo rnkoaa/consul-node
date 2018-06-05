@@ -19,6 +19,7 @@ import { AppConfig } from "./util/app-config";
 import * as homeController from "./controller/home";
 import * as healthController from "./controller/health";
 import * as infoController from "./controller/info";
+import { ENDPOINTS } from "./context/endpoints";
 
 const appConfig = new AppConfig();
 
@@ -50,12 +51,13 @@ app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-app.get("/", homeController.index);
-app.get("/instances/round-robin", homeController.roundRobinInstance);
-app.get("/instances/random", homeController.randomInstance);
-app.get("/info", infoController.info);
-app.get("/info/env", infoController.env);
-app.get("/health", healthController.getHealth);
+app.get(ENDPOINTS.home, homeController.index);
+app.get(ENDPOINTS.round_robin, homeController.roundRobinInstance);
+app.get(ENDPOINTS.random, homeController.randomInstance);
+app.get(ENDPOINTS.info, infoController.info);
+app.get(ENDPOINTS.endpoints, infoController.endpoints);
+app.get(ENDPOINTS.env, infoController.env);
+app.get(ENDPOINTS.health, healthController.getHealth);
 
 process.on("SIGHUP", function() {
   // getUpstreams(true, function(hosts) {

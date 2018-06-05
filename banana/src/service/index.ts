@@ -12,7 +12,7 @@ caBuffer.push(cert.toString());
 caBuffer.push(cacert.toString());
 const consul = new Consul({
   host: "vagrant-hashi-stack-1.alpha.consul",
-  port: "8501",
+  port: "8500",
   secure: false
 });
 // consul.health.service("vault", (err, result) => {

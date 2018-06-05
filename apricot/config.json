@@ -1,7 +1,7 @@
 {
     "consul": {
       "host": "vagrant-hashi-stack-1.alpha.consul",
-      "port": "8501",
+      "port": "8500",
       "secure": false
     }
 }

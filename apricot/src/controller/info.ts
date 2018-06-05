@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { PROCESS_ENVIRONMENT } from "../util/environments";
 import { ENVIRONMENT } from "../util/secrets";
+import { ENDPOINTS } from "../context/endpoints";
 
 // import { CacheService } from "../service/cache-service";
 
@@ -30,4 +31,12 @@ export let info = (req: Request, res: Response) => {
 
 export let env = (req: Request, res: Response) => {
   res.json(PROCESS_ENVIRONMENT);
+};
+export let endpoints = (req: Request, res: Response) => {
+  // res.json(Object.values(ENDPOINTS));
+  const values = [];
+  const keys = Object.keys(ENDPOINTS);
+  keys.forEach(key => values.push(ENDPOINTS[key]));
+
+  res.json(values);
 };

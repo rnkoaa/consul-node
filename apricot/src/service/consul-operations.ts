@@ -26,27 +26,28 @@ export class ConsulOperations {
       this._consulClient.health.service(name, (err, result) => {
         if (err) {
           reject(err);
-        }
-        const responses = result as ConsulServiceResponse[];
-        const services = responses.map(response => {
-          const mServices = [];
-          const service = response.Service;
-          const checks = response.Checks;
-          const checkedServices = checks.filter(check => {
-            if (status) {
-              return check.ServiceName === name && check.Status === status;
-            } else {
-              return check.ServiceName === name;
+        } else {
+          const responses = result as ConsulServiceResponse[];
+          const services = responses.map(response => {
+            const mServices = [];
+            const service = response.Service;
+            const checks = response.Checks;
+            const checkedServices = checks.filter(check => {
+              if (status) {
+                return check.ServiceName === name && check.Status === status;
+              } else {
+                return check.ServiceName === name;
+              }
+            });
+            if (checkedServices.length > 0) {
+              mServices.push(service);
             }
+            return mServices;
           });
-          if (checkedServices.length > 0) {
-            mServices.push(service);
-          }
-          return mServices;
-        });
 
-        const flatServices = services.reduce((acc, val) => acc.concat(val), []);
-        resolve(flatServices);
+          const flatServices = services.reduce((acc, val) => acc.concat(val), []);
+          resolve(flatServices);
+        }
       });
     });
   }
