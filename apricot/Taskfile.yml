@@ -4,7 +4,13 @@ tasks:
   docker-build:
     cmds:
       - docker build -t rnkoaa/apricot .
-      
+  version:
+    cmds:
+      - echo {{.VERSION}}
+    vars:
+      VERSION:
+        sh: cat package.json | jq .version
+
   docker-run:
     cmds:
       - docker run -it -p 3000:3000 -e NODE_ENV=dev --add-host=vagrant-hashi-stack-1.alpha.consul:192.168.33.10 --name apricot rnkoaa/apricot

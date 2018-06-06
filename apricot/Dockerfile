@@ -16,5 +16,4 @@ RUN npm install --only=prod
 
 COPY dist/ /var/www/app
 
-# CMD ["node", "server.js"]
-CMD ["echo", "Done."]
+CMD ["node", "server.js"]
