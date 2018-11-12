@@ -1,23 +1,23 @@
-import Consul from "consul";
-import * as fs from "fs";
-import * as path from "path";
-import axios from "axios";
-import { RoundRobinLoadBalancingStrategy } from "./round-robin-load-balancing-strategy";
-import { DiscoveryClient } from "./discovery-client";
-import { Url } from "../util/url";
+// import Consul from "consul";
+// import * as fs from "fs";
+// import * as path from "path";
+// import axios from "axios";
+// import { RoundRobinLoadBalancingStrategy } from "./round-robin-load-balancing-strategy";
+// import { DiscoveryClient } from "./discovery-client";
+// import { Url } from "../util/url";
 
-import dotenv from "dotenv";
-import { ConsulOperations } from "../components/consul-service-discovery/lib";
+// import dotenv from "dotenv";
+// import { ConsulOperations } from "../components/consul-service-discovery/lib";
 
-if (fs.existsSync(".env")) {
-  dotenv.config({ path: ".env" });
-} else {
+// if (fs.existsSync(".env")) {
+//   dotenv.config({ path: ".env" });
+// } else {
   // logger.debug("Using .env.example file to supply config environment variables");
   // dotenv.config({ path: ".env.example" });  // you can delete this after you create your own .env file!
-}
+// }
 
-const consulOperations = new ConsulOperations();
-const discoveryClient = new DiscoveryClient("random", consulOperations);
+// const consulOperations = new ConsulOperations();
+// const discoveryClient = new DiscoveryClient("random", consulOperations);
 // async function run(instanceName) {
 //   const banana = await discoveryClient.getServiceInstance(instanceName);
 //   console.log(`${instanceName} => ${JSON.stringify(banana)}`);
@@ -31,29 +31,29 @@ const discoveryClient = new DiscoveryClient("random", consulOperations);
 // run("banana");
 // run("apricot");
 
-const bananaUrl = "http://banana/info";
+// const bananaUrl = "http://banana/info";
 
-async function generateUrl(url) {
-  const urlPaths = Url.urlParts(url);
-  let instanceHttpUrl;
-  if (urlPaths.hostname) {
-    const serviceInstance = await discoveryClient.getServiceInstance(urlPaths.hostname);
-    instanceHttpUrl = `${urlPaths.protocol}://${serviceInstance.httpUri}${urlPaths.path}`;
-    if (urlPaths.query_params) {
-      instanceHttpUrl = `${instanceHttpUrl}${urlPaths.query_params}`;
-    }
-  }
-  return instanceHttpUrl;
-}
+// async function generateUrl(url) {
+//   const urlPaths = Url.urlParts(url);
+//   let instanceHttpUrl;
+//   if (urlPaths.hostname) {
+//     const serviceInstance = await discoveryClient.getServiceInstance(urlPaths.hostname);
+//     instanceHttpUrl = `${urlPaths.protocol}://${serviceInstance.httpUri}${urlPaths.path}`;
+//     if (urlPaths.query_params) {
+//       instanceHttpUrl = `${instanceHttpUrl}${urlPaths.query_params}`;
+//     }
+//   }
+//   return instanceHttpUrl;
+// }
 
-async function getHealth(url) {
-  const generatedUrl = await generateUrl(url);
-  return axios.get(generatedUrl);
-}
+// async function getHealth(url) {
+//   const generatedUrl = await generateUrl(url);
+//   return axios.get(generatedUrl);
+// }
 
-getHealth(bananaUrl).then(response => {
-  console.log(response.data);
-});
+// getHealth(bananaUrl).then(response => {
+//   console.log(response.data);
+// });
 
 // console.log(Url.urlParts(bananaUrl));
 

@@ -1,0 +1,53 @@
+[
+    {
+        "Node": {
+            "ID": "562eef3c-cb64-d373-d8e3-f9d5871eaee4",
+            "Node": "280e24243f2c",
+            "Address": "127.0.0.1",
+            "Datacenter": "dc1",
+            "TaggedAddresses": {
+                "lan": "127.0.0.1",
+                "wan": "127.0.0.1"
+            },
+            "Meta": {
+                "consul-network-segment": ""
+            },
+            "CreateIndex": 9,
+            "ModifyIndex": 10
+        },
+        "Service": {
+            "ID": "consul",
+            "Service": "consul",
+            "Tags": [],
+            "Address": "",
+            "Meta": null,
+            "Port": 8300,
+            "Weights": {
+                "Passing": 1,
+                "Warning": 1
+            },
+            "EnableTagOverride": false,
+            "ProxyDestination": "",
+            "Proxy": {},
+            "Connect": {},
+            "CreateIndex": 9,
+            "ModifyIndex": 9
+        },
+        "Checks": [
+            {
+                "Node": "280e24243f2c",
+                "CheckID": "serfHealth",
+                "Name": "Serf Health Status",
+                "Status": "passing",
+                "Notes": "",
+                "Output": "Agent alive and reachable",
+                "ServiceID": "",
+                "ServiceName": "",
+                "ServiceTags": [],
+                "Definition": {},
+                "CreateIndex": 9,
+                "ModifyIndex": 9
+            }
+        ]
+    }
+]

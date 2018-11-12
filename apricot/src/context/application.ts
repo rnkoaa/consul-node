@@ -1,6 +1,6 @@
 // import { ConsulOperations } from "../service/consul-operations";
 import Consul from "consul";
-import { ConsulConfigClient } from "../components/consul-config/lib";
+// import { ConsulConfigClient } from "../components/consul-config/lib";
 
 export class Application {
   // static consulConfi(): ConsulConfigClient {

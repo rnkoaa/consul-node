@@ -1,32 +1,32 @@
-import fs from "fs";
-import path from "path";
-process.env.SUPPRESS_NO_CONFIG_WARNING = "y";
-process.env["NODE_CONFIG_DIR"] = path.join(__dirname, "../config/");
-import config from "config";
-
-import { AppConfig } from "../util/app-config";
-
-new AppConfig().bootstrap("default");
-
-// const applicationName = appConfig.get("application");
+// import fs from "fs";
+// import path from "path";
 // process.env.SUPPRESS_NO_CONFIG_WARNING = "y";
+// process.env["NODE_CONFIG_DIR"] = path.join(__dirname, "../config/");
 // import config from "config";
 
-// const configDir = "config/";
-// console.log(`Current directory: ${process.cwd()}`);
+// import { AppConfig } from "../util/app-config";
 
-// const configPath = path.join(process.cwd(), configDir);
-// console.log(configPath);
+// new AppConfig().bootstrap("default");
 
-// console.log(config.util.toObject());
+// // const applicationName = appConfig.get("application");
+// // process.env.SUPPRESS_NO_CONFIG_WARNING = "y";
+// // import config from "config";
 
-// config.util.extendDeep(config, {
-//     "users": {
-//         "name": "Richard Agyei"
-//     }
-// });
-// console.log(config.util.toObject());
+// // const configDir = "config/";
+// // console.log(`Current directory: ${process.cwd()}`);
 
-// console.log(config.get("users"));
+// // const configPath = path.join(process.cwd(), configDir);
+// // console.log(configPath);
 
-console.log(config.get("port"));
+// // console.log(config.util.toObject());
+
+// // config.util.extendDeep(config, {
+// //     "users": {
+// //         "name": "Richard Agyei"
+// //     }
+// // });
+// // console.log(config.util.toObject());
+
+// // console.log(config.get("users"));
+
+// console.log(config.get("port"));
