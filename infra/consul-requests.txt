@@ -1,0 +1,38 @@
+ curl http://localhost:8500/v1/health/service/consul?pretty
+curl http://localhost:8500/v1/health/service/consul?pretty
+
+
+Register a service
+POST /services/{service_name}
+
+example
+Register a service
+curl -X PUT -d '{"Datacenter": "dc1", "Node": "google",
+   "Address": "www.google.com",
+   "Service": {"Service": "search", "Port": 80}}'
+   http://127.0.0.1:8500/v1/catalog/register
+
+echo '{"Datacenter": "dc1", "Node": "google", "Address": "www.google.com", "Service": {"Service": "search", "Port": 80}}' http -v PUT :8500/v1/catalog/register
+
+Deregister a service
+echo '{"Datacenter": "dc1", "Node": "google"}' | http -V PUT :8500/v1/catalog/deregister
+
+Sample Payloads
+{
+  "Datacenter": "dc1",
+  "Node": "foobar"
+}
+
+{
+  "Datacenter": "dc1",
+  "Node": "foobar",
+  "CheckID": "service:redis1"
+}
+
+{
+  "Datacenter": "dc1",
+  "Node": "foobar",
+  "ServiceID": "redis1"
+}
+
+curl -X PUT -d '{"Datacenter": "dc1", "Node": "google"}' http://127.0.0.1:8500/v1/catalog/deregister

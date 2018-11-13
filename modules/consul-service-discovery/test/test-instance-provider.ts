@@ -5,6 +5,7 @@ export class TestInstanceProvider {
     return <ServiceInstance>{
       id: '2',
       serviceId: 'service-2',
+      secure: false,
       serviceName: 'service-name-2',
       host: 'localhost',
       port: 8080,
@@ -21,6 +22,7 @@ export class TestInstanceProvider {
         id: `${idx}`,
         serviceId: `${serviceName}-${idx}`,
         serviceName: generatedServiceName,
+        secure: false,
         host: `localhost-${idx}`,
         port: 8080,
         checkIndex: 0,
