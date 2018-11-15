@@ -1,3 +1,4 @@
+
 export interface ConsulInstance {
   Name: string;
   ID: string;
@@ -55,6 +56,27 @@ export interface ConsulServiceResponse {
   ModifyIndex: number;
 }
 
+export interface ConsulHealthCheck {
+  ID?: string;
+  Name?: string;
+  Args?: string;
+  Timeout?: string;
+  DeregisterCriticalServiceAfter?: string;
+  HTTP?: string;
+  TCP?: string;
+  TLSSkipVerify?: boolean;
+  Method?: string;
+  Interval?: string;
+  Header?: string;
+  GRPC?: string;
+  ServiceId?: string;
+  GRPCUseTLS?: string;
+  DockerContainerID?: string;
+  AliasService?: string;
+  Shell?: string;
+  Notes?: string;
+  TTL?: string;
+}
 export interface Instance {
   address: string;
   executed: boolean;
@@ -80,4 +102,14 @@ export interface ServiceInstance {
   secure: boolean;
   port: number;
   host: string;
+}
+
+export interface ServiceRegistrationRequest {
+  Name: string;
+  Address: string;
+  Port: number;
+  Check?: ConsulHealthCheck;
+  Checks?: Array<ConsulHealthCheck>;
+  Meta?: any;
+  EnableTagOverride?: boolean;
 }

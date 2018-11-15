@@ -8,12 +8,15 @@ export interface ConsulInstanceConfig {
     // process.env.CONSUL_DISCOVERY_TAGS, optional metadata tags, (eg, foo=bar {foo: bar}, bar => {bar: bar})
 
     host?: string;
-    serviceId?: string;
     port?: number;
     secure?: boolean;
     enableHealthCheck?: boolean;
     discoveryHealthCheckPath?: string;
     discoveryHealthCheckInterval?: string;
-    applicationName: string;
+    serviceId?: string;
+    serviceName: string;
+    serviceAddress: string;
+    servicePort: number;
     tags?: Array<string>;
+    meta?: Array<string>;
 }

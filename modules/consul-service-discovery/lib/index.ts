@@ -1,9 +1,8 @@
 // export const Greeter = (name: string) => `Hello ${name}`;
-import { InstanceOperations } from './instance-operations';
-// import DataStore from './data-store';
 
 export { InstanceOperations } from './instance-operations';
-export { DataStore} from './data-store';
+export { DataStore } from './data-store';
+export { ConsulInstanceConfig } from "./consul-instance-config";
 
 // process.env.CONSUL_HOST, default to localhost
 // process.env.APPLICATION_NAME, required
