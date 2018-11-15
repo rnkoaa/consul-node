@@ -1,5 +1,4 @@
 import express from 'express';
-import { DataStore, InstanceOperations } from 'consul-service-discovery';
 
 import compression from 'compression'; // compresses requests
 // import session from "express-session";
@@ -21,8 +20,7 @@ import * as homeController from './controller/home';
 import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
-const instanceOperations = new InstanceOperations();
-const datastore = new DataStore();
+
 
 // const appConfig = new AppConfig();
 
@@ -44,19 +42,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-instanceOperations
-  .registerService({
-    name: 'apricot',
-    hostAddress: 'localhost',
-    port: 8080
-  })
-  .then(res => {
-    console.log(`Successfully registered with consul id: ${res}`);
-    datastore.applicationId = res;
-  })
-  .catch(err => {
-    console.log('Failed to register instance in consul.');
-  });
 
 app.use((req, res, next) => {
   //   res.locals.user = req.user;
@@ -81,50 +66,62 @@ app.get(ENDPOINTS.endpoints, infoController.endpoints);
 app.get(ENDPOINTS.env, infoController.env);
 app.get(ENDPOINTS.health, healthController.getHealth);
 
-process.on('SIGHUP', function() {
-  // getUpstreams(true, function(hosts) {
-  //     console.log("Updated upstreamHosts");
-  // });
-});
+// process.on('SIGHUP', function () {
+//   // getUpstreams(true, function(hosts) {
+//   //     console.log("Updated upstreamHosts");
+//   // });
+// });
 
-process.on('SIGTERM', function onSigterm() {
-  console.info(
-    'Got SIGTERM. Graceful shutdown start',
-    new Date().toISOString()
-  );
+// process.on('SIGTERM', function onSigterm() {
+//   console.info(
+//     'Got SIGTERM. Graceful shutdown start',
+//     new Date().toISOString()
+//   );
   // start graceul shutdown here
   // shutdown();
-  instanceOperations
-    .deregisterService({ serviceId: datastore.applicationId })
-    .then(res => {
-      process.exit();
-    })
-    .catch(err => {
-      console.log('error deregistering...');
-      process.exit();
-    });
-});
+  // instanceOperations
+  //   .deregisterService({ serviceId: datastore.applicationId })
+  //   .then(res => {
+  //     process.exit();
+  //   })
+  //   .catch(err => {
+  //     console.log('error deregistering...');
+  //     process.exit();
+  //   });
+// });
 
-process.on('exit', (code) => {
-  console.log(`About to exit with code: ${code}`);
-});
+// process.on('SIGTERM', () => {
+//   app.close(() => {
+//     console.log('close the app.')
+//   })
+// })
 
-process.on('uncaughtException', (err) => {
-  // fs.writeSync(1, `Caught exception: ${err}\n`);
-});
+// process.on('exit', (code) => {
+//   console.log(`About to exit with code: ${code}`);
+// });
 
-process.on('SIGINT', () => {
-  console.log('Received SIGINT. Press Control-D to exit.');
-});
+// process.on('uncaughtException', (err) => {
+//   // fs.writeSync(1, `Caught exception: ${err}\n`);
+// });
+
+// process.on('SIGINT', () => {
+//   console.log('Received SIGINT. Press Control-D to exit.');
+// });
 
 // Using a single function to handle multiple signals
-function handle(signal) {
-  console.log(`Received ${signal}`);
-}
+// function handle(signal) {
+//   console.log(`Received ${signal}`);
+// }
 
 // SIGKILL, SIGSTOP
-process.on('SIGINT', handle);
-process.on('SIGTERM', handle);
+// process.on('SIGINT', handle);
+// process.on('SIGTERM', handle);
+
+// process.on('SIGTERM', () => {
+//   server.close(() => {
+//     console.log('Process terminated')
+//   })
+// })
 
 
 //   function shutdown() {
