@@ -17,8 +17,7 @@ app.use(errorHandler());
 const server = app.listen(applicationConfig.application.port, () => {
   console.log(
     '  App is running at http://localhost:%d in %s mode\n',
-    applicationConfig.application.port,
-    process.env.NODE_ENV || 'development'
+    applicationConfig.application.port, applicationConfig.application.env
   );
   console.log('  Press CTRL-C to stop\n');
 });

@@ -21,10 +21,6 @@ import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
 
-
-// const appConfig = new AppConfig();
-
-// appConfig.bootstrap(ENVIRONMENT);
 // Create Express server
 const app = express();
 const prod = ENVIRONMENT === 'production'; // Anything else is treated as 'dev'
@@ -35,7 +31,6 @@ app.set(
   'views',
   prod ? path.join(__dirname, './views') : path.join(__dirname, '../views')
 );
-// app.engine("hbs", exphbs({ defaultLayout: "default", extname: "hbs" }));
 app.set('view engine', 'hbs');
 app.use(compression());
 app.use(bodyParser.json());
@@ -65,77 +60,5 @@ app.get(ENDPOINTS.info, infoController.info);
 app.get(ENDPOINTS.endpoints, infoController.endpoints);
 app.get(ENDPOINTS.env, infoController.env);
 app.get(ENDPOINTS.health, healthController.getHealth);
-
-// process.on('SIGHUP', function () {
-//   // getUpstreams(true, function(hosts) {
-//   //     console.log("Updated upstreamHosts");
-//   // });
-// });
-
-// process.on('SIGTERM', function onSigterm() {
-//   console.info(
-//     'Got SIGTERM. Graceful shutdown start',
-//     new Date().toISOString()
-//   );
-  // start graceul shutdown here
-  // shutdown();
-  // instanceOperations
-  //   .deregisterService({ serviceId: datastore.applicationId })
-  //   .then(res => {
-  //     process.exit();
-  //   })
-  //   .catch(err => {
-  //     console.log('error deregistering...');
-  //     process.exit();
-  //   });
-// });
-
-// process.on('SIGTERM', () => {
-//   app.close(() => {
-//     console.log('close the app.')
-//   })
-// })
-
-// process.on('exit', (code) => {
-//   console.log(`About to exit with code: ${code}`);
-// });
-
-// process.on('uncaughtException', (err) => {
-//   // fs.writeSync(1, `Caught exception: ${err}\n`);
-// });
-
-// process.on('SIGINT', () => {
-//   console.log('Received SIGINT. Press Control-D to exit.');
-// });
-
-// Using a single function to handle multiple signals
-// function handle(signal) {
-//   console.log(`Received ${signal}`);
-// }
-
-// SIGKILL, SIGSTOP
-// process.on('SIGINT', handle);
-// process.on('SIGTERM', handle);
-
-// process.on('SIGTERM', () => {
-//   server.close(() => {
-//     console.log('Process terminated')
-//   })
-// })
-
-
-//   function shutdown() {
-//     server.close(function onServerClosed (err) {
-//       if (err) {
-//         console.error(err)
-//         process.exit(1)
-//       }
-
-//       closeMyResources(function onResourcesClosed (err) {
-//         // error handling
-//         process.exit()
-//       })
-//     })
-//   }
 
 export default app;
