@@ -4,7 +4,7 @@ export class TestInstanceProvider {
   public static generateOneInstance(): ServiceInstance {
     return <ServiceInstance>{
       id: '2',
-      serviceId: 'service-2',
+      instanceId: 'service-2',
       secure: false,
       serviceName: 'service-name-2',
       host: 'localhost',
@@ -20,7 +20,7 @@ export class TestInstanceProvider {
     for (idx = 0; idx < count; idx++) {
       instances.push({
         id: `${idx}`,
-        serviceId: `${serviceName}-${idx}`,
+        instanceId: `${serviceName}-${idx}`,
         serviceName: generatedServiceName,
         secure: false,
         host: `localhost-${idx}`,

@@ -55,7 +55,7 @@ describe("Config can be generated easily from env files.", () => {
         // process.env.CONSUL_HTTP_HEALTH_CHECK_METHOD = "GET"
         process.env.APPLICATION_SECURE = 'false'
         process.env.APPLICATION_HOST = "localhost"
-        process.env.APPLICATION_PORT = "5000"
+        process.env.PORT = "5000"
 
         const healthCheck: ConsulHealthCheck = generateHTTPHealthCheck(process.env);
         expect(healthCheck).not.toBeUndefined;

@@ -26,12 +26,12 @@ export class DataStore {
   }
 
   public addInstance(instance: ServiceInstance): void {
-    if (!instance.serviceId) {
+    if (!instance.instanceId) {
       throw new Error('instance service Id is required.');
     }
-    // remove an instance with the same serviceId if it exists
+    // remove an instance with the same instanceId if it exists
     // if it does not exist, nothing will happen.
-    this.removeIfExists(instance.serviceId);
+    this.removeIfExists(instance.instanceId);
 
     // then add the new instance to the list
     this._instances.push(instance);
@@ -48,16 +48,16 @@ export class DataStore {
     }
   }
 
-  public remove(serviceId: string): void {
-    const idx = this._instances.findIndex(item => item.serviceId === serviceId);
+  public remove(instanceId: string): void {
+    const idx = this._instances.findIndex(item => item.instanceId === instanceId);
     if (idx > -1) {
       this.instances.splice(idx, 1);
     }
   }
 
   // overloaded method to indicate that nothing happens if it does not exist.
-  public removeIfExists(serviceId: string): void {
-    this.remove(serviceId);
+  public removeIfExists(instanceId: string): void {
+    this.remove(instanceId);
   }
 
   findById(id: string): ServiceInstance {
@@ -72,7 +72,7 @@ export class DataStore {
     return this._instances.filter(item => item.serviceName === name);
   }
 
-  findInstancesByServiceId(serviceId: string): Array<ServiceInstance> {
-    return this._instances.filter(instance => instance.serviceId === serviceId);
+  findInstancesById(instanceId: string): Array<ServiceInstance> {
+    return this._instances.filter(instance => instance.instanceId === instanceId);
   }
 }

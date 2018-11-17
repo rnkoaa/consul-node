@@ -13,7 +13,7 @@ test('an item can be added to the datastore.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -29,7 +29,7 @@ test('multiple items can be added to the datastore.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -39,7 +39,7 @@ test('multiple items can be added to the datastore.', () => {
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
@@ -54,7 +54,7 @@ test('multiple items can be added to the datastore in bulk', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -63,7 +63,7 @@ test('multiple items can be added to the datastore in bulk', () => {
 
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
@@ -78,7 +78,7 @@ test('adding an instance with the same service id will override the previous one
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -88,7 +88,7 @@ test('adding an instance with the same service id will override the previous one
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
@@ -103,7 +103,7 @@ test('given an id, a service instance can be found.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -113,7 +113,7 @@ test('given an id, a service instance can be found.', () => {
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
@@ -123,7 +123,7 @@ test('given an id, a service instance can be found.', () => {
   expect(datastore.instances.length).toEqual(2);
   const found = datastore.findById('2');
   expect(found).not.toBe(null);
-  expect(found.serviceId).toEqual('service-2');
+  expect(found.instanceId).toEqual('service-2');
   expect(found.serviceName).toEqual('service-name-2');
   expect(found.port).toEqual(8080);
   expect(found.host).toEqual('localhost');
@@ -134,7 +134,7 @@ test('given an id, a service instance that does not exist cannot be found.', () 
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
     port: 8080,
@@ -144,7 +144,7 @@ test('given an id, a service instance that does not exist cannot be found.', () 
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
@@ -154,7 +154,7 @@ test('given an id, a service instance that does not exist cannot be found.', () 
   expect(datastore.instances.length).toEqual(2);
   const found = datastore.findById('10');
   expect(found).not.toBe(null);
-  expect(found.serviceId).toBeUndefined;
+  expect(found.instanceId).toBeUndefined;
   expect(found.serviceName).toBeUndefined;
   expect(found.port).toBeUndefined;
   expect(found.host).toBeUndefined;
@@ -165,7 +165,7 @@ test('given a service-instance name, all services can be retrieved.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,
@@ -175,7 +175,7 @@ test('given a service-instance name, all services can be retrieved.', () => {
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,
@@ -192,7 +192,7 @@ test('given a local id, service can be removed.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,
@@ -202,7 +202,7 @@ test('given a local id, service can be removed.', () => {
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,
@@ -225,7 +225,7 @@ test('given a service instance id, service can be removed.', () => {
   expect(datastore.instances.length).toEqual(0);
   const instance1 = <ServiceInstance>{
     id: '1',
-    serviceId: 'service-1',
+    instanceId: 'service-1',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,
@@ -235,7 +235,7 @@ test('given a service instance id, service can be removed.', () => {
   datastore.addInstance(instance1);
   const instance2 = <ServiceInstance>{
     id: '2',
-    serviceId: 'service-2',
+    instanceId: 'service-2',
     serviceName: 'service-name',
     host: 'localhost',
     port: 8080,

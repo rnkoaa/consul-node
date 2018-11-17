@@ -9,13 +9,13 @@ test('random selection strategy for a single instance', () => {
   const dataStore: DataStore = new DataStore();
   const instance = TestInstanceProvider.generateOneInstance();
   expect(instance).not.toBeUndefined;
-  expect(instance.serviceId).toEqual('service-2');
+  expect(instance.instanceId).toEqual('service-2');
   expect(instance.serviceName).toEqual('service-name-2');
 
   dataStore.addInstance(instance);
   const serviceInstance = randomSelectionStrategy.select('service-name-2', dataStore);
   expect(serviceInstance).not.toBeUndefined;
-  expect(serviceInstance.serviceId).toEqual('service-2');
+  expect(serviceInstance.instanceId).toEqual('service-2');
   expect(serviceInstance.serviceName).toEqual('service-name-2');
 });
 
@@ -23,13 +23,13 @@ test('random selection strategy for a non existent instance', () => {
   const dataStore: DataStore = new DataStore();
   const instance = TestInstanceProvider.generateOneInstance();
   expect(instance).not.toBeUndefined;
-  expect(instance.serviceId).toEqual('service-2');
+  expect(instance.instanceId).toEqual('service-2');
   expect(instance.serviceName).toEqual('service-name-2');
 
   dataStore.addInstance(instance);
   const serviceInstance = randomSelectionStrategy.select('service-non-existent', dataStore);
   expect(serviceInstance).not.toBeUndefined;
-  expect(serviceInstance.serviceId).toBeUndefined;
+  expect(serviceInstance.instanceId).toBeUndefined;
   expect(serviceInstance.serviceName).toBeUndefined;
 });
 

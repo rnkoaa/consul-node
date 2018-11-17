@@ -96,7 +96,7 @@ export interface NodeMeta {
 
 export interface ServiceInstance {
   id: string;
-  serviceId: string;
+  instanceId: string;
   serviceName: string;
   checkIndex: number;
   secure: boolean;

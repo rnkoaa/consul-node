@@ -13,7 +13,7 @@ export interface ConsulInstanceConfig {
     enableHealthCheck?: boolean;
     discoveryHealthCheckPath?: string;
     discoveryHealthCheckInterval?: string;
-    serviceId?: string;
+    instanceId?: string;
     serviceName: string;
     serviceAddress: string;
     servicePort: number;

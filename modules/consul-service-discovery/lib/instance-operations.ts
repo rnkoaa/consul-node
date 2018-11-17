@@ -5,12 +5,13 @@ import { httpHealthCheckEnabled, generateHTTPHealthCheck, consulInstanceConfig }
 import { ServiceRegistrationRequest } from './types/consul';
 export class InstanceOperations {
   _service: ConsulRegistrationService;
+
   constructor() {
     this._service = new ConsulRegistrationService(consulInstanceConfig);
-    this._service.serviceId = uuidv4();
+    this._service.instanceId = uuidv4();
   }
-  init(): void {
 
+  init(): void {
     this.registerService()
       .then(res => {
         console.log("Successfully registered against consul.")
@@ -32,7 +33,7 @@ export class InstanceOperations {
   }
   async registerService(): Promise<string> {
     const reqObject = <ServiceRegistrationRequest>{
-      ID: this._service.serviceId,
+      ID: this._service.instanceId,
       Name: this._service.serviceName,
       Address: this._service.serviceAddress,
       Port: this._service.servicePort,
@@ -45,7 +46,7 @@ export class InstanceOperations {
     try {
       const registerResponse = await axiosClient.put(this._service.registrationUrl, reqObject);
       console.log(`Registration response: ${registerResponse.data}`);
-      return this._service.serviceId;
+      return this._service.instanceId;
     } catch (err) {
       //   console.log(err.response.data);
       //   console.log(err.response.status);

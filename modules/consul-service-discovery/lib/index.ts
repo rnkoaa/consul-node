@@ -25,7 +25,7 @@ console.log(`Started the application: ${process.env.CONSUL_HOST}:${process.env.C
 // console.log(`Registered response: ${response}`);
 
 // const deregisterResponse = instanceOperations.deregisterService({
-//     serviceId: "1"
+//     instanceId: "1"
 // })
 
 // deregisterResponse.then(res => {

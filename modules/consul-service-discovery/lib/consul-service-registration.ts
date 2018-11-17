@@ -11,11 +11,11 @@ export class ConsulRegistrationService {
         return this._consulInstanceConfig.serviceName;
     }
 
-    get serviceId(): string {
-        return this._consulInstanceConfig.serviceId || "";
+    get instanceId(): string {
+        return this._consulInstanceConfig.instanceId || "";
     }
-    set serviceId(_serviceId: string) {
-        this._consulInstanceConfig.serviceId = _serviceId;
+    set instanceId(_instanceId: string) {
+        this._consulInstanceConfig.instanceId = _instanceId;
     }
 
     get serviceAddress(): string {
@@ -38,7 +38,7 @@ export class ConsulRegistrationService {
     get check(): any {
         // if(this.enableHealthCheck) {
         //     const check = {
-        //         id: this.serviceId,
+        //         id: this.instanceId,
         //         name: this.healthCheckName,
         //         interval: this._consulInstanceConfig.discoveryHealthCheckInterval,
         //         timeout: this._consulInstanceConfig.discoveryHealthCheckInterval,
@@ -50,7 +50,7 @@ export class ConsulRegistrationService {
     get checks(): Array<any> {
         // if(this.enableHealthCheck) {
         //     const check = {
-        //         id: this.serviceId,
+        //         id: this.instanceId,
         //         name: this.healthCheckName,
         //         interval: this._consulInstanceConfig.discoveryHealthCheckInterval,
         //         timeout: this._consulInstanceConfig.discoveryHealthCheckInterval,
@@ -72,7 +72,7 @@ export class ConsulRegistrationService {
         const secure = this._consulInstanceConfig.secure || false;
         let requestUrl = "";
         requestUrl += (secure) ? "https://" : "http://";
-        requestUrl += `${this.address}:${this.port}/v1/agent/service/deregister/${this.serviceId}`;
+        requestUrl += `${this.address}:${this.port}/v1/agent/service/deregister/${this.instanceId}`;
         return requestUrl
     }
 
