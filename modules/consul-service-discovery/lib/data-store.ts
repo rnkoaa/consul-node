@@ -40,6 +40,9 @@ export class DataStore {
   public addInstances(instances: Array<ServiceInstance>): void {
     instances.forEach(instance => this.addInstance(instance));
   }
+  public replaceInstances(serviceName: string, instances: Array<ServiceInstance>): void {
+    instances.forEach(instance => this.addInstance(instance));
+  }
 
   public removeById(id: string): void {
     const idx = this._instances.findIndex(item => item.id === id);

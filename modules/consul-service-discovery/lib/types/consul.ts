@@ -98,7 +98,10 @@ export interface ServiceInstance {
   id: string;
   instanceId: string;
   serviceName: string;
-  checkIndex: number;
+  serviceAddress: string;
+  checkIndex?: number;
+  modifyIndex?: number;
+  createIndex?: number;
   secure: boolean;
   port: number;
   host: string;
