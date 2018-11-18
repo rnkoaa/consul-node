@@ -1,3 +1,8 @@
+node_modules/
+lerna-debug.log
+npm-debug.log
+packages/*/lib
+.idea
 certs/
 **/node_modules/
 **/dist/
@@ -7,3 +12,4 @@ certs/
 # ignore bit components
 **/*/src/components/
 **/*/.bit
+
