@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": ["packages/*", "apricot"],
   "devDependencies": {
     "@types/node": "^10.12.9",
     "lerna": "^3.4.3",

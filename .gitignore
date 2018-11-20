@@ -13,3 +13,4 @@ certs/
 **/*/src/components/
 **/*/.bit
 
+.DS_Store

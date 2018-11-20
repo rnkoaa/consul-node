@@ -1,7 +1,9 @@
 'use strict';
 
-const consulDiscoveryService = require('..');
+// const consulDiscoveryService = require('..');
 
 describe('consul-discovery-service', () => {
-    it('needs tests');
+    test('true to be true', ()=> {
+        expect(true).toBeTruthy();
+    })
 });
