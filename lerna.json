@@ -1,6 +1,12 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*", 
+    "apricot"
   ],
+  "command": {
+    "run": {
+      "npmClient": "yarn"
+    }
+  },
   "version": "1.0.0"
 }

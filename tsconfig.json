@@ -1,11 +1,14 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
         "declaration": true,
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
         "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "target": "es6",
         "sourceMap": true,
