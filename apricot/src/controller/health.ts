@@ -5,3 +5,9 @@ export let getHealth = (req: Request, res: Response) => {
     status: 'UP'
   });
 };
+
+export let getDatastore = (req: Request, res: Response) => {
+  res.json({
+    status: 'UP'
+  });
+};

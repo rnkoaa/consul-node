@@ -1,4 +1,4 @@
-import { ServiceInstance } from "../src/types/consul";
+import { ServiceInstance } from "../../src/types/consul";
 
 export class TestInstanceProvider {
   public static generateOneInstance(): ServiceInstance {

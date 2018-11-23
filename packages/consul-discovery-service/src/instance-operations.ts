@@ -1,19 +1,27 @@
 import axiosClient from './util/axios-client';
-import * as uuidv4 from 'uuid/v4';
+import uuidv4 from 'uuid'
 import { ConsulRegistrationService } from './consul-service-registration';
 import { httpHealthCheckEnabled, generateHTTPHealthCheck, consulInstanceConfig } from './config';
-import { ServiceRegistrationRequest } from './types/consul';
+import { ServiceRegistrationRequest, ServiceInstance } from './types/consul';
 import { CatalogServiceWatcher } from './catalog-service-watcher';
 import { DataStore } from './data-store';
+import { ServiceDiscovery } from './service-discovery';
 export class InstanceOperations {
   _service: ConsulRegistrationService;
   _catalogServiceWatcher: CatalogServiceWatcher;
   _datastore: DataStore;
+  _serviceDiscovery: ServiceDiscovery;
+
   constructor() {
     this._service = new ConsulRegistrationService(consulInstanceConfig);
     this._service.instanceId = uuidv4();
     this._datastore = new DataStore();
     this._catalogServiceWatcher = new CatalogServiceWatcher(this._datastore);
+    this._serviceDiscovery = new ServiceDiscovery(consulInstanceConfig.discoveryStrategy, this._datastore);
+  }
+
+  discover( serviceName: string): ServiceInstance | any {
+    return this._serviceDiscovery.discover(serviceName);
   }
 
   init(): void {
@@ -31,6 +39,7 @@ export class InstanceOperations {
     this.deregisterService()
       .then(res => {
         console.log('Removed item from console: ', res);
+        this._catalogServiceWatcher.stop();
         fn();
       })
       .catch(err => {

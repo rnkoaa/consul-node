@@ -5,5 +5,6 @@ export const ENDPOINTS = {
     info: "/info",
     endpoints: "/info/endpoints",
     env: "/info/env",
+    datastore: "/info/datastore",
     health: "/health",
 };

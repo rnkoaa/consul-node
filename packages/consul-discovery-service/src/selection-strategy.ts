@@ -58,8 +58,8 @@ export class RandomStrategy implements SelectionStrategy {
 }
 
 export class SelectionStrategyFactory {
-  createStrategy(type: 'random'): RandomStrategy;
-  createStrategy(type: 'round-robin'): RoundRobinStrategy;
+  // createStrategy(type: 'random'): RandomStrategy;
+  // createStrategy(type: 'round-robin'): RoundRobinStrategy;
 
   public createStrategy(strategy: string): RandomStrategy | RoundRobinStrategy {
     if (strategy === 'random') {

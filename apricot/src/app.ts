@@ -20,11 +20,13 @@ import * as homeController from './controller/home';
 import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
-
+import { InstanceOperations } from '@hipster-store/consul-discovery-service';
 // Create Express server
 const app = express();
 const prod = ENVIRONMENT === 'production'; // Anything else is treated as 'dev'
 
+const instanceOperations = new InstanceOperations();
+app.set('instanceOperations', instanceOperations);
 // Express configuration
 app.set('port', process.env.PORT || 3000);
 app.set(
@@ -36,7 +38,6 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-
 
 app.use((req, res, next) => {
   //   res.locals.user = req.user;
@@ -61,4 +62,11 @@ app.get(ENDPOINTS.endpoints, infoController.endpoints);
 app.get(ENDPOINTS.env, infoController.env);
 app.get(ENDPOINTS.health, healthController.getHealth);
 
+app.get(ENDPOINTS.datastore, (req, res) => {
+  res.json(instanceOperations._datastore.instances);
+});
+
+app.get("/discover/apricot", (req, res) => {
+  res.json(instanceOperations.discover('apricot'));
+});
 export default app;

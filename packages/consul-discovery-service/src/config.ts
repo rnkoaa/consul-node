@@ -102,6 +102,7 @@ export const consulInstanceConfig = <ConsulInstanceConfig>{
     port: (stringToInteger(process.env.CONSUL_PORT) === 0) ? 8500 : stringToInteger(process.env.CONSUL_PORT),
     secure: stringToBoolean(process.env.CONSUL_SECURE),
     serviceName: process.env.APPLICATION_NAME,
+    discoveryStrategy: process.env.SERVICE_DISCOVERY_STRATEGY || 'random',
     serviceAddress: process.env.APPLICATION_HOST || 'localhost',
     servicePort: (stringToInteger(process.env.PORT) === 0) ? 3000 : stringToInteger(process.env.PORT)
 };

@@ -6,6 +6,13 @@ export interface ConsulInstance {
   Port: number;
 }
 
+export interface RequestObject {
+  secure?: boolean,
+  protocol?: string,
+  service: string,
+  path: string
+}
+
 export interface ConsulServiceHealthResponse {
   Node: ConsulNodeResponse;
   Service: ConsulServiceResponse;
@@ -85,7 +92,6 @@ export interface Instance {
   port: number;
   status: string;
 }
-
 export interface TaggedAddresses {
   lan: string;
   wan: string;

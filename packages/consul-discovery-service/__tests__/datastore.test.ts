@@ -33,7 +33,7 @@ test('multiple items can be added to the datastore.', () => {
   const instance1 = <ServiceInstance>{
     id: '1',
     instanceId: 'service-1',
-    serviceName: 'service-name-1',
+    serviceName: 'service-name-2',
     host: 'localhost',
     port: 8080,
     checkIndex: 0,
@@ -49,7 +49,7 @@ test('multiple items can be added to the datastore.', () => {
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
-  expect(datastore.instances.length).toEqual(2);
+  expect(datastore.instances.length).toEqual(1);
 });
 
 test('multiple items can be added to the datastore in bulk', () => {
@@ -60,7 +60,7 @@ test('multiple items can be added to the datastore in bulk', () => {
     instanceId: 'service-1',
     serviceName: 'service-name-1',
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     checkIndex: 0,
   };
 
@@ -94,11 +94,11 @@ test('adding an instance with the same service id will override the previous one
     instanceId: 'service-1',
     serviceName: 'service-name-2',
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
-  expect(datastore.instances.length).toEqual(1);
+  expect(datastore.instances.length).toEqual(2);
 });
 
 test('given an id, a service instance can be found.', () => {
@@ -119,7 +119,7 @@ test('given an id, a service instance can be found.', () => {
     instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
@@ -128,7 +128,7 @@ test('given an id, a service instance can be found.', () => {
   expect(found).not.toBe(null);
   expect(found.instanceId).toEqual('service-2');
   expect(found.serviceName).toEqual('service-name-2');
-  expect(found.port).toEqual(8080);
+  expect(found.port).toEqual(3000);
   expect(found.host).toEqual('localhost');
 });
 
@@ -150,7 +150,7 @@ test('given an id, a service instance that does not exist cannot be found.', () 
     instanceId: 'service-2',
     serviceName: 'service-name-2',
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
@@ -185,9 +185,9 @@ test('given a service-instance name, all services can be retrieved.', () => {
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
-  expect(datastore.instances.length).toEqual(2);
+  expect(datastore.instances.length).toEqual(1);
   const found = datastore.findInstancesByName('service-name');
-  expect(found.length).toEqual(2);
+  expect(found.length).toEqual(1);
 });
 
 test('given a local id, service can be removed.', () => {
@@ -212,15 +212,15 @@ test('given a local id, service can be removed.', () => {
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
-  expect(datastore.instances.length).toEqual(2);
+  expect(datastore.instances.length).toEqual(1);
   const found = datastore.findInstancesByName('service-name');
-  expect(found.length).toEqual(2);
+  expect(found.length).toEqual(1);
 
   // remove the instance with id 2
   datastore.removeById('2');
-  expect(datastore.instances.length).toEqual(1);
+  expect(datastore.instances.length).toEqual(0);
   const secondFound = datastore.findInstancesByName('service-name');
-  expect(secondFound.length).toEqual(1);
+  expect(secondFound.length).toEqual(0);
 });
 
 test('given a service instance id, service can be removed.', () => {
@@ -245,13 +245,13 @@ test('given a service instance id, service can be removed.', () => {
     checkIndex: 0,
   };
   datastore.addInstance(instance2);
-  expect(datastore.instances.length).toEqual(2);
+  expect(datastore.instances.length).toEqual(1);
   const found = datastore.findInstancesByName('service-name');
-  expect(found.length).toEqual(2);
+  expect(found.length).toEqual(1);
 
   // remove the instance with id 2
   datastore.remove('service-2');
-  expect(datastore.instances.length).toEqual(1);
+  expect(datastore.instances.length).toEqual(0);
   const secondFound = datastore.findInstancesByName('service-name');
-  expect(secondFound.length).toEqual(1);
+  expect(secondFound.length).toEqual(0);
 });

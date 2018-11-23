@@ -88,8 +88,8 @@ test("Round robin  selection strategy for multiple instances and multiple servic
   );
   expect(serviceInstance).not.toBeUndefined;
   expect(serviceInstance.serviceName).toEqual(`service-name-${count}`);
-  expect(serviceInstance.instanceId).toEqual(`service-name-1`);
-  expect(serviceInstance.host).toEqual(`localhost-1`);
+  expect(serviceInstance.instanceId).toEqual(`service-name-3`);
+  expect(serviceInstance.host).toEqual(`localhost-3`);
 
   const serviceInstance2 = roundRobinSelectionStrategy.select(
     `service-name-${count}`,
@@ -97,8 +97,8 @@ test("Round robin  selection strategy for multiple instances and multiple servic
   );
   expect(serviceInstance2).not.toBeUndefined;
   expect(serviceInstance2.serviceName).toEqual(`service-name-${count}`);
-  expect(serviceInstance2.instanceId).toEqual(`service-name-2`);
-  expect(serviceInstance2.host).toEqual(`localhost-2`);
+  expect(serviceInstance2.instanceId).toEqual(`service-name-3`);
+  expect(serviceInstance2.host).toEqual(`localhost-3`);
 
   const serviceInstance3 = roundRobinSelectionStrategy.select(
     `service-name-${count}`,
@@ -115,6 +115,6 @@ test("Round robin  selection strategy for multiple instances and multiple servic
   );
   expect(serviceInstance4).not.toBeUndefined;
   expect(serviceInstance4.serviceName).toEqual(`service-name-${count}`);
-  expect(serviceInstance4.instanceId).toEqual(`service-name-0`);
-  expect(serviceInstance4.host).toEqual(`localhost-0`);
+  expect(serviceInstance4.instanceId).toEqual(`service-name-3`);
+  expect(serviceInstance4.host).toEqual(`localhost-3`);
 });

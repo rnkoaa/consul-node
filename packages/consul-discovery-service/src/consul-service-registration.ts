@@ -35,30 +35,6 @@ export class ConsulRegistrationService {
     get enableHealthCheck(): boolean {
         return this._consulInstanceConfig.enableHealthCheck || false;
     }
-    get check(): any {
-        // if(this.enableHealthCheck) {
-        //     const check = {
-        //         id: this.instanceId,
-        //         name: this.healthCheckName,
-        //         interval: this._consulInstanceConfig.discoveryHealthCheckInterval,
-        //         timeout: this._consulInstanceConfig.discoveryHealthCheckInterval,
-        //     };
-        // }
-        // return this._consulInstanceConfig.hea || false;
-        return null;
-    }
-    get checks(): Array<any> {
-        // if(this.enableHealthCheck) {
-        //     const check = {
-        //         id: this.instanceId,
-        //         name: this.healthCheckName,
-        //         interval: this._consulInstanceConfig.discoveryHealthCheckInterval,
-        //         timeout: this._consulInstanceConfig.discoveryHealthCheckInterval,
-        //     };
-        // }
-        // return this._consulInstanceConfig.hea || false;
-        return [];
-    }
 
     get registrationUrl(): string {
         const secure = this._consulInstanceConfig.secure || false;
