@@ -103,8 +103,8 @@ export const consulInstanceConfig = <ConsulInstanceConfig>{
     secure: stringToBoolean(process.env.CONSUL_SECURE),
     serviceName: process.env.APPLICATION_NAME,
     discoveryStrategy: process.env.SERVICE_DISCOVERY_STRATEGY || 'random',
-    serviceAddress: process.env.APPLICATION_HOST || 'localhost',
-    servicePort: (stringToInteger(process.env.PORT) === 0) ? 3000 : stringToInteger(process.env.PORT)
+    serviceAddress: process.env.ADVERTISE_HOST || 'localhost',
+    servicePort: (stringToInteger(process.env.ADVERTISE_PORT) === 0) ? 3000 : stringToInteger(process.env.ADVERTISE_PORT)
 };
 
 export const generateHTTPHealthCheck = (env: any): ConsulHealthCheck | any => {
@@ -114,7 +114,7 @@ export const generateHTTPHealthCheck = (env: any): ConsulHealthCheck | any => {
     } else {
         const applicationSecure = stringToBoolean(env.APPLICATION_SECURE);
         const uriPrefix = (applicationSecure) ? "https" : "http"
-        const applicationBaseEndpoint = `${uriPrefix}://${env.APPLICATION_HOST}:${env.PORT}`;
+        const applicationBaseEndpoint = `${uriPrefix}://${env.ADVERTISE_HOST}:${env.ADVERTISE_PORT}`;
         applicationHealthCheckEndpoint = `${applicationBaseEndpoint}${env.CONSUL_HTTP_HEALTH_CHECK_PATH}`
     }
     const consulHealthCheck = <ConsulHealthCheck>{
