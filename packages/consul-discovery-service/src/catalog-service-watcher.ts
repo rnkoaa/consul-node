@@ -56,10 +56,10 @@ export class CatalogServiceWatcher {
           receipts.forEach((serviceArray: Array<ConsulServiceResponse>) => {
             serviceArray.forEach(serviceInstance => {
               const instanceObject = <ServiceInstance>{
-                instanceId: serviceInstance.ID,
-                serviceName: serviceInstance.Service,
-                serviceAddress: `${serviceInstance.Address}:${serviceInstance.Port}`,
-                host: serviceInstance.Address,
+                instanceId: serviceInstance.ID.toLocaleLowerCase(),
+                serviceName: serviceInstance.Service.toLocaleLowerCase(),
+                serviceAddress: `${serviceInstance.Address.toLocaleLowerCase()}:${serviceInstance.Port}`,
+                host: serviceInstance.Address.toLocaleLowerCase(),
                 port: serviceInstance.Port,
                 modifyIndex: serviceInstance.ModifyIndex,
                 createIndex: serviceInstance.CreateIndex
