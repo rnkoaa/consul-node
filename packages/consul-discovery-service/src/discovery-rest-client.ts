@@ -15,7 +15,7 @@ export class DiscoveryRestClient {
   constructor(_datastore: DataStore) {
     this._datastore = _datastore;
     this._urlParser = new URLParser();
-    this._serviceDiscovery = new ServiceDiscovery(consulInstanceConfig.discoveryStrategy, this._datastore);
+    this._serviceDiscovery = new ServiceDiscovery(consulInstanceConfig.discoveryStrategy);
   }
 
   get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {

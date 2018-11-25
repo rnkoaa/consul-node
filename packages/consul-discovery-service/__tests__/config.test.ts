@@ -1,6 +1,6 @@
 import { generateHTTPHealthCheck } from "../lib/config";
 import { ConsulHealthCheck } from "../lib/types/consul";
-
+import {datastoreInstance} from '../src/index'
 describe("Config can be generated easily from env files.", () => {
     // test("expect that 1 + 1 = 2", () => {
     //     expect(1+1).toEqual(2)
@@ -9,6 +9,7 @@ describe("Config can be generated easily from env files.", () => {
     const OLD_ENV = process.env;
 
     beforeEach(() => {
+        datastoreInstance.clear();
         jest.resetModules() // this is important
         process.env = { ...OLD_ENV };
         delete process.env.NODE_ENV;
@@ -17,6 +18,7 @@ describe("Config can be generated easily from env files.", () => {
 
     afterEach(() => {
         process.env = OLD_ENV;
+        datastoreInstance.clear();
     });
 
     test('will receive process.env variables', () => {
@@ -54,8 +56,8 @@ describe("Config can be generated easily from env files.", () => {
         process.env.CONSUL_HTTP_HEALTH_CHECK_TLS_SKIP_VERIFY = "false"
         // process.env.CONSUL_HTTP_HEALTH_CHECK_METHOD = "GET"
         process.env.APPLICATION_SECURE = 'false'
-        process.env.APPLICATION_HOST = "localhost"
-        process.env.PORT = "5000"
+        process.env.ADVERTISE_HOST = "localhost"
+        process.env.ADVERTISE_PORT = "5000"
 
         const healthCheck: ConsulHealthCheck = generateHTTPHealthCheck(process.env);
         expect(healthCheck).not.toBeUndefined;

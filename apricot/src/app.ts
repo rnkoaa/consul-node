@@ -63,7 +63,7 @@ app.get(ENDPOINTS.env, infoController.env);
 app.get(ENDPOINTS.health, healthController.getHealth);
 
 app.get(ENDPOINTS.datastore, (req, res) => {
-  res.json(instanceOperations._datastore.instances);
+  // res.json(instanceOperations._datastore.instances);
 });
 
 app.get("/discover/apricot", (req, res) => {

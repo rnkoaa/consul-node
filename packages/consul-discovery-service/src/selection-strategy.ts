@@ -1,8 +1,8 @@
 import { DataStore} from "./data-store";
 import { ServiceInstance } from "./types/consul";
-
+import {datastoreInstance} from './index'
 export interface SelectionStrategy {
-  select(serviceName: string, dataStore: DataStore): ServiceInstance;
+  select(serviceName: string): ServiceInstance;
 }
 export interface IndexMap {
   lastInstanceIndex: number;
@@ -11,8 +11,8 @@ export interface IndexMap {
 export class RoundRobinStrategy implements SelectionStrategy {
   indexMaps: Array<IndexMap> = [];
 
-  public select(serviceName: string, dataStore: DataStore): ServiceInstance {
-    const instances: Array<ServiceInstance> = dataStore.findInstancesByName(serviceName);
+  public select(serviceName: string): ServiceInstance {
+    const instances: Array<ServiceInstance> = datastoreInstance.findInstancesByName(serviceName);
     if (this.indexMaps.length <= 0) {
       this.populateInstance(serviceName);
     }
@@ -48,8 +48,8 @@ export class RoundRobinStrategy implements SelectionStrategy {
 }
 
 export class RandomStrategy implements SelectionStrategy {
-  public select(serviceName: string, dataStore: DataStore): ServiceInstance {
-    const storedServices = dataStore.findInstancesByName(serviceName);
+  public select(serviceName: string): ServiceInstance {
+    const storedServices = datastoreInstance.findInstancesByName(serviceName);
     if (storedServices.length > 0) {
       return storedServices[Math.floor((Math.random() * storedServices.length))];
     }
