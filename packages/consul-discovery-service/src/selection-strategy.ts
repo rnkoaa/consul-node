@@ -1,13 +1,15 @@
-import { DataStore} from "./data-store";
-import { ServiceInstance } from "./types/consul";
-import {datastoreInstance} from './index'
+import { ServiceInstance } from './types/consul';
+import { datastoreInstance } from './index';
+
 export interface SelectionStrategy {
   select(serviceName: string): ServiceInstance;
 }
+
 export interface IndexMap {
   lastInstanceIndex: number;
   instanceName: string;
 }
+
 export class RoundRobinStrategy implements SelectionStrategy {
   indexMaps: Array<IndexMap> = [];
 
@@ -33,7 +35,7 @@ export class RoundRobinStrategy implements SelectionStrategy {
       }
       this.indexMaps[instanceIdx].lastInstanceIndex = lastInstanceIndex;
     } else {
-      instance = <ServiceInstance>{}
+      instance = <ServiceInstance>{};
     }
     return instance;
   }
@@ -42,7 +44,7 @@ export class RoundRobinStrategy implements SelectionStrategy {
     const indexMap = <IndexMap>{
       lastInstanceIndex: 0,
       instanceName: serviceName
-    }
+    };
     this.indexMaps.push(indexMap);
   }
 }
@@ -51,16 +53,13 @@ export class RandomStrategy implements SelectionStrategy {
   public select(serviceName: string): ServiceInstance {
     const storedServices = datastoreInstance.findInstancesByName(serviceName);
     if (storedServices.length > 0) {
-      return storedServices[Math.floor((Math.random() * storedServices.length))];
+      return storedServices[Math.floor(Math.random() * storedServices.length)];
     }
     return <ServiceInstance>{};
   }
 }
 
 export class SelectionStrategyFactory {
-  // createStrategy(type: 'random'): RandomStrategy;
-  // createStrategy(type: 'round-robin'): RoundRobinStrategy;
-
   public createStrategy(strategy: string): RandomStrategy | RoundRobinStrategy {
     if (strategy === 'random') {
       return new RandomStrategy();

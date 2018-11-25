@@ -12,27 +12,41 @@
 //     })
 // }
 
+// import package from '../package';
+// import packageJson from '../package.json';
+// console.log(packageJson.version);
+
+// // console.log(`Imported Package Json`);
+
+// const getVersion = () => {
+//   console.log(`return versions ${packageJson.version}`);
+//   return packageJson.version;
+// };
+
 export const applicationConfig: Config = <Config>{
-    application: <Application>{
-        env: process.env.NODE_ENV || 'development',
-        name: process.env.APPLICATION_NAME || 'Apricot',
-        port: parseInt(process.env.PORT) || 3000,
-        host: process.env.ADVERTISE_HOSTNAME || 'localhost',
-    },
+  application: <Application>{
+    startTime: new Date(),
+    env: process.env.NODE_ENV || 'development',
+    name: process.env.APPLICATION_NAME || 'Apricot',
+    port: parseInt(process.env.PORT) || 3000,
     host: process.env.ADVERTISE_HOSTNAME || 'localhost',
-    port: parseInt(process.env.ADVERTISE_PORT) || 3000,
-}
+    version: process.env.APPLICATION_VERSION || '1.0.0'
+  },
+  host: process.env.ADVERTISE_HOSTNAME || 'localhost',
+  port: parseInt(process.env.ADVERTISE_PORT) || 3000
+};
 
 export interface Config {
-    application?: Application;
-    port?: number;
-    // consul?: Consul
+  application?: Application;
+  port?: number;
+  // consul?: Consul
 }
 
 export interface Application {
-    env?: string;
-    name?: string;
-    host?: string;
-    port?: number;
+  env?: string;
+  name?: string;
+  host?: string;
+  port?: number;
+  startTime?: Date;
+  version?: string;
 }
-

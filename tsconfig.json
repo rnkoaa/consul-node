@@ -5,6 +5,7 @@
         "moduleResolution": "node",
         "declaration": true,
         "removeComments": true,
+        "resolveJsonModule": true,
         "noLib": false,
         "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": true,

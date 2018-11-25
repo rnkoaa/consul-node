@@ -98,6 +98,7 @@ const stringToInteger = (str: string | any): number => {
 }
 
 export const consulInstanceConfig = <ConsulInstanceConfig>{
+    registerSelf: stringToBoolean(process.env.CONSUL_REGISTER_SELF || 'false'),
     host: process.env.CONSUL_HOST || "localhost",
     port: (stringToInteger(process.env.CONSUL_PORT) === 0) ? 8500 : stringToInteger(process.env.CONSUL_PORT),
     secure: stringToBoolean(process.env.CONSUL_SECURE),

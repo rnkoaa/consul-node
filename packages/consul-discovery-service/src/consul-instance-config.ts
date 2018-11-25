@@ -1,6 +1,7 @@
 export interface ConsulInstanceConfig {
     host?: string;
     port?: number;
+    registerSelf?: boolean;
     secure?: boolean;
     discoveryStrategy?: string;
     enableHealthCheck?: boolean;

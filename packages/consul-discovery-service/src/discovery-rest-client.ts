@@ -43,7 +43,7 @@ export class DiscoveryRestClient {
     return axiosClient.patch<T>(modifiedUrl, data, config);
   }
 
-  private _discoverUrl(originalUrl: string): string {
+  _discoverUrl(originalUrl: string): string {
     const req = this._urlParser.parse(originalUrl);
     const instance: ServiceInstance = this._serviceDiscovery.discover(req.service);
     return `${req.protocol}://${instance.serviceAddress}${req.path}`;

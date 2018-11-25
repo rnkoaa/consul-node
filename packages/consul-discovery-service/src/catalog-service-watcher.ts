@@ -48,13 +48,11 @@ export class CatalogServiceWatcher {
 
     this._watcher.on('change', (data: any) => {
       const serviceNames = Object.keys(data);
-      console.log(`detected service names: ${serviceNames}`);
       const serviceInstances: Array<ServiceInstance> = [];
       const promises = serviceNames.map(service => this._consulhealthServiceAsync(service));
 
       Promise.all(promises)
         .then((receipts: Array<Array<ConsulServiceResponse>>) => {
-          console.log(`Detected ${receipts.length} number of services.`);
           receipts.forEach((serviceArray: Array<ConsulServiceResponse>) => {
             serviceArray.forEach(serviceInstance => {
               const instanceObject = <ServiceInstance>{
@@ -71,7 +69,6 @@ export class CatalogServiceWatcher {
             });
           });
           datastoreInstance.addInstances(serviceInstances);
-          console.log(datastoreInstance.instances);
         })
         .catch(err => `There are errors seen`);
     });

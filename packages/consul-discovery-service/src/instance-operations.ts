@@ -9,7 +9,6 @@ import { ServiceDiscovery } from './service-discovery';
 export class InstanceOperations {
   _service: ConsulRegistrationService;
   _catalogServiceWatcher: CatalogServiceWatcher;
-  // _datastore: DataStore;
   _serviceDiscovery: ServiceDiscovery;
 
   constructor() {
@@ -25,27 +24,36 @@ export class InstanceOperations {
   }
 
   init(): void {
-    this.registerService()
-      .then(res => {
-        console.log('Successfully registered against consul.');
-        this._catalogServiceWatcher.start();
-      })
-      .catch(err => {
-        console.log('caught an error while registering service.');
-      });
+    if (consulInstanceConfig.registerSelf) {
+      this.registerService()
+        .then(res => {
+          console.log('Successfully registered against consul.');
+          this._catalogServiceWatcher.start();
+        })
+        .catch(err => {
+          console.log('caught an error while registering service.');
+        });
+    } else {
+      this._catalogServiceWatcher.start();
+    }
   }
 
   close(fn: () => void): void {
-    this.deregisterService()
-      .then(res => {
-        console.log('Removed item from console: ', res);
-        this._catalogServiceWatcher.stop();
-        fn();
-      })
-      .catch(err => {
-        console.log('Error while removing service from ', err);
-        fn();
-      });
+    if (consulInstanceConfig.registerSelf) {
+      this.deregisterService()
+        .then(res => {
+          console.log('Removed item from console: ', res);
+          this._catalogServiceWatcher.stop();
+          fn();
+        })
+        .catch(err => {
+          console.log('Error while removing service from ', err);
+          fn();
+        });
+    } else {
+      // just stop watching for changes
+      this._catalogServiceWatcher.stop();
+    }
   }
   async registerService(): Promise<string> {
     const reqObject = <ServiceRegistrationRequest>{

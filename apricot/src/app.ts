@@ -1,32 +1,28 @@
 import express from 'express';
 
 import compression from 'compression'; // compresses requests
-// import session from "express-session";
 import bodyParser from 'body-parser';
 // import logger from "./util/logger";
 // import exphbs from "express-handlebars";
-// import lusca from "lusca";
-// import dotenv from "dotenv";
-// import flash from "express-flash";
 import path from 'path';
 import expressValidator from 'express-validator';
 // import bluebird from "bluebird";
-import { ENVIRONMENT } from './util/environments';
-// import { AppConfig } from "./util/app-config";
 
 // Load environment variables from .env file, where API keys and passwords are configured
-// dotenv.config({ path: ".env" });
 import * as homeController from './controller/home';
 import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
 import { InstanceOperations, datastoreInstance } from '@hipster-store/consul-discovery-service';
+import {applicationConfig} from './config';
+
 // Create Express server
 const app = express();
-const prod = ENVIRONMENT === 'production'; // Anything else is treated as 'dev'
 
 const instanceOperations = new InstanceOperations();
 app.set('instanceOperations', instanceOperations);
+
+const prod = applicationConfig.application.env === 'production';
 // Express configuration
 app.set('port', process.env.PORT || 3000);
 app.set(
