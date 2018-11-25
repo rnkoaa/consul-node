@@ -17,10 +17,10 @@ export const applicationConfig: Config = <Config>{
         env: process.env.NODE_ENV || 'development',
         name: process.env.APPLICATION_NAME || 'Apricot',
         port: parseInt(process.env.PORT) || 3000,
-        host: process.env.APPLICATION_HOSTNAME || 'localhost',
+        host: process.env.ADVERTISE_HOSTNAME || 'localhost',
     },
-    host: process.env.APPLICATION_HOSTNAME || 'localhost',
-    port: parseInt(process.env.PORT) || 3000,
+    host: process.env.ADVERTISE_HOSTNAME || 'localhost',
+    port: parseInt(process.env.ADVERTISE_PORT) || 3000,
 }
 
 export interface Config {

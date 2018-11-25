@@ -20,7 +20,7 @@ import * as homeController from './controller/home';
 import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
-import { InstanceOperations } from '@hipster-store/consul-discovery-service';
+import { InstanceOperations, datastoreInstance } from '@hipster-store/consul-discovery-service';
 // Create Express server
 const app = express();
 const prod = ENVIRONMENT === 'production'; // Anything else is treated as 'dev'
@@ -63,7 +63,7 @@ app.get(ENDPOINTS.env, infoController.env);
 app.get(ENDPOINTS.health, healthController.getHealth);
 
 app.get(ENDPOINTS.datastore, (req, res) => {
-  // res.json(instanceOperations._datastore.instances);
+  res.json(datastoreInstance.instances);
 });
 
 app.get("/discover/apricot", (req, res) => {
