@@ -6,7 +6,9 @@
         "__DEV__": true
     },
     "testPathIgnorePatterns": [
-        "<rootDir>/__tests__/helpers"
+        "/node_modules/",
+        "./__tests__/helpers",
+        "./lib/"
     ],
     "testRegex": "(./__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],

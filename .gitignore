@@ -9,6 +9,10 @@ certs/
 **/.env
 **/*debug.log*
 
+**/*.d.ts
+**/**/src/*.js
+**/**/src/*.js.map
+
 # ignore bit components
 **/*/src/components/
 **/*/.bit

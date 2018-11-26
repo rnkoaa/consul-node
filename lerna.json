@@ -1,7 +1,8 @@
 {
   "packages": [
     "packages/*", 
-    "apricot"
+    "apricot",
+    "banana"
   ],
   "command": {
     "run": {
