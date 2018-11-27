@@ -1,5 +1,5 @@
-import { generateHTTPHealthCheck } from "../lib/config";
-import { ConsulHealthCheck } from "../lib/types/consul";
+import { generateHTTPHealthCheck } from "../src/config";
+import { ConsulHealthCheck } from "../src/types/consul";
 import {datastoreInstance} from '../src/index'
 describe("Config can be generated easily from env files.", () => {
     // test("expect that 1 + 1 = 2", () => {
