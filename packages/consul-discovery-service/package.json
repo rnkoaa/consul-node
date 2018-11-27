@@ -16,25 +16,25 @@
   ],
   "dependencies": {
     "@types/uuid": "^3.4.4",
-    "async": "^2.6.0",
+    "async": "^2.6.1",
     "axios": "^0.18.0",
     "consul": "^0.34.1",
     "uuid": "^3.3.2",
-    "winston": "^2.4.0"
+    "winston": "^3.1.0"
   },
   "devDependencies": {
-    "@types/async": "^2.0.45",
+    "@types/async": "^2.0.50",
     "@types/consul": "^0.23.33",
     "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.8",
+    "@types/node": "^10.12.10",
     "dotenv": "^6.1.0",
     "jest": "^23.6.0",
-    "nodemon": "^1.13.0",
-    "prettier": "^1.15.0",
-    "ts-jest": "^23.10.4",
-    "ts-node": "^5.0.0",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.15.2",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.1.6"
   },
   "repository": {
