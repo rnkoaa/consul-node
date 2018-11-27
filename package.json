@@ -1,7 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": ["packages/*", "apricot"],
+  "workspaces": ["packages/*", "apricot", "banana"],
   "devDependencies": {
     "lerna": "^3.4.3",
     "typescript": "^3.1.6",

@@ -1,11 +1,11 @@
-# `banana`
+# `apricot`
 
 > TODO: description
 
 ## Usage
 
 ```
-const banana = require('banana');
+const apricot = require('apricot');
 
 // TODO: DEMONSTRATE API
 ```
