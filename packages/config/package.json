@@ -1,0 +1,23 @@
+{
+  "name": "provict",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r dotenv/config dist/index.js",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start-dev": "nodemon dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/convict": "^4.2.0",
+    "@types/dotenv": "^6.1.0",
+    "@types/node": "^10.12.10",
+    "dotenv": "^6.1.0",
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "convict": "^4.4.0"
+  }
+}

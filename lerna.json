@@ -1,8 +1,9 @@
 {
   "packages": [
     "packages/*", 
-    "apricot",
-    "banana"
+    "inventory",
+    "product-catalog",
+    "shipping"
   ],
   "command": {
     "run": {

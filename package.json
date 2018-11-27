@@ -1,7 +1,11 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": ["packages/*", "apricot", "banana"],
+  "workspaces": ["packages/*",
+    "inventory",
+    "product-catalog",
+    "shipping"
+  ],
   "devDependencies": {
     "lerna": "^3.4.3",
     "typescript": "^3.1.6",
