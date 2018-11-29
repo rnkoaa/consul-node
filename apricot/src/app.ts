@@ -13,13 +13,13 @@ import * as homeController from './controller/home';
 import * as healthController from './controller/health';
 import * as infoController from './controller/info';
 import { ENDPOINTS } from './context/endpoints';
-import { InstanceOperations, datastoreInstance } from '@hipster-store/consul-discovery-service';
+import { instanceOperations, datastoreInstance } from '@hipster-store/consul-discovery-service';
 import {applicationConfig} from './config';
 
 // Create Express server
 const app = express();
 
-const instanceOperations = new InstanceOperations();
+// const instanceOperations = new InstanceOperations();
 app.set('instanceOperations', instanceOperations);
 
 const prod = applicationConfig.application.env === 'production';

@@ -2,7 +2,7 @@
 // console.log(`Generated application name: ${applicationName}`)
 
 import convict from "convict";
-// import path from "path";
+import path from "path";
 
 export const config = convict({
   application: {
@@ -138,9 +138,10 @@ export const config = convict({
 });
 
 const env = config.get("env");
-// config.loadFile((path.join('../config/'),  env + '.json'));
-// config.loadFile("./config/" + env + ".json");
 
-// Perform validation
-// config.validate({allowed: 'strict'});
-// export config;
+const configPath = process.env.CONFIG_PATH;
+const configFileLocation = path.join(process.cwd(), configPath, env+'.json');
+
+// load the config file.
+config.loadFile(configFileLocation);
+

@@ -1,4 +1,4 @@
-// import config from './config'
+export { config } from "./config";
 
 // // console.log(config);
 // console.log(config.getProperties());
